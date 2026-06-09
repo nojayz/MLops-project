@@ -1,5 +1,5 @@
 import torch
-import torch.nn as nn
+from torch import nn
 
 
 class ConvNet(nn.Module):
@@ -14,12 +14,12 @@ class ConvNet(nn.Module):
             nn.Conv2d(32, 64, kernel_size=3, padding=1),
             nn.BatchNorm2d(64),
             nn.ReLU(),
-            nn.MaxPool2d(2),          # 14x14
+            nn.MaxPool2d(2),  # 14x14
             nn.Dropout2d(dropout),
             nn.Conv2d(64, 128, kernel_size=3, padding=1),
             nn.BatchNorm2d(128),
             nn.ReLU(),
-            nn.MaxPool2d(2),          # 7x7
+            nn.MaxPool2d(2),  # 7x7
             nn.Dropout2d(dropout),
         )
         self.classifier = nn.Sequential(
@@ -32,3 +32,9 @@ class ConvNet(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.classifier(self.features(x))
+
+
+if __name__ == "__main__":
+    model = ConvNet()
+    x = torch.randn(16, 1, 28, 28)  # batch of 16 random images
+    print(f"Output shape of model: {model(x).shape}")
