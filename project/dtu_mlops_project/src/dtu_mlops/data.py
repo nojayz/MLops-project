@@ -1,6 +1,8 @@
 from pathlib import Path
 
 import torch
+
+PROJECT_ROOT = Path(__file__).parent.parent.parent
 import typer
 from torch.utils.data import Dataset
 
@@ -63,12 +65,13 @@ def preprocess_data(raw_dir: str, processed_dir: str) -> None:
     torch.save(test_target, f"{processed_dir}/test_targets.pt")
 
 
-def corrupt_mnist() -> tuple[torch.utils.data.Dataset, torch.utils.data.Dataset]:
+def corrupt_mnist(path: str | None = None) -> tuple[torch.utils.data.Dataset, torch.utils.data.Dataset]:
     """Return train and test datasets for corrupt MNIST."""
-    train_images = torch.load("data/corruptmnist_v1/processed/train_images.pt")
-    train_target = torch.load("data/corruptmnist_v1/processed/train_targets.pt")
-    test_images = torch.load("data/corruptmnist_v1/processed/test_images.pt")
-    test_target = torch.load("data/corruptmnist_v1/processed/test_targets.pt")
+    data_dir = PROJECT_ROOT / path if path else PROJECT_ROOT / "data" / "corruptmnist_v1" / "processed"
+    train_images = torch.load(data_dir / "train_images.pt")
+    train_target = torch.load(data_dir / "train_targets.pt")
+    test_images = torch.load(data_dir / "test_images.pt")
+    test_target = torch.load(data_dir / "test_targets.pt")
 
     train_set = torch.utils.data.TensorDataset(train_images, train_target)
     test_set = torch.utils.data.TensorDataset(test_images, test_target)
