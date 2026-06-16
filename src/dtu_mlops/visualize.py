@@ -20,16 +20,18 @@ def visualize(model_checkpoint: str, figure_name: str = "embeddings.png") -> Non
     test_target = torch.load("data/processed/test_target.pt")
     test_dataset = torch.utils.data.TensorDataset(test_images, test_target)
 
-    embeddings: list[torch.Tensor] = []
-    targets: list[torch.Tensor] = []
+    import numpy as np
+
+    embeddings_list: list[torch.Tensor] = []
+    targets_list: list[torch.Tensor] = []
     with torch.inference_mode():
         for batch in torch.utils.data.DataLoader(test_dataset, batch_size=32):
             images, target = batch
             predictions = model(images)
-            embeddings.append(predictions)
-            targets.append(target)
-        embeddings = torch.cat(embeddings).numpy()
-        targets = torch.cat(targets).numpy()
+            embeddings_list.append(predictions)
+            targets_list.append(target)
+    embeddings: np.ndarray = torch.cat(embeddings_list).numpy()
+    targets: np.ndarray = torch.cat(targets_list).numpy()
 
     if embeddings.shape[1] > 500:  # Reduce dimensionality for large embeddings
         pca = PCA(n_components=100)
