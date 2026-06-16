@@ -59,5 +59,11 @@ explicit = true
 line-length = 120
 lint.select = ["I"]
 
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+explicit_package_bases = true
+mypy_path = "src"
+
 [tool.coverage.run]
 omit = ["tests/*"]

@@ -19,7 +19,9 @@ def evaluate(model_checkpoint: str) -> float:
             preds = model(img).argmax(dim=1)
             correct += (preds == target).sum().item()
             total += target.size(0)
-    print(f"Test accuracy: {correct / total}")
+    accuracy = correct / total
+    print(f"Test accuracy: {accuracy}")
+    return accuracy
 
 
 if __name__ == "__main__":

@@ -42,7 +42,7 @@ def train(config: DictConfig) -> None:
     loss_fn = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 
-    statistics = {"train_loss": [], "train_accuracy": []}
+    statistics: dict[str, list[float]] = {"train_loss": [], "train_accuracy": []}
     for epoch in range(epochs):
         model.train()
         for i, (img, target) in enumerate(train_dataloader):
