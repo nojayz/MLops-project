@@ -15,6 +15,7 @@ ROOT = Path(__file__).parent
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
+
 @hydra.main(config_path="config", config_name="config")
 def train(config: DictConfig) -> None:
     """Train a model on MNIST."""
@@ -24,7 +25,9 @@ def train(config: DictConfig) -> None:
     batch_size = hparams["batch_size"]
     lr = hparams["learning_rate"]
     epochs = hparams["epochs"]
-    wandb.init(project="dtu-mlops", config={"batch_size": batch_size, "learning_rate": lr, "epochs": epochs}, job_type="train")
+    wandb.init(
+        project="dtu-mlops", config={"batch_size": batch_size, "learning_rate": lr, "epochs": epochs}, job_type="train"
+    )
     artifact = wandb.Artifact(name="mnist_dumb_model", type="model")
 
     model = ConvNet(

@@ -52,10 +52,14 @@ def serve_docs(ctx: Context) -> None:
     """Serve documentation."""
     ctx.run("uv run mkdocs serve --config-file docs/mkdocs.yaml", echo=True, pty=not WINDOWS)
 
+
 @task
-def git(ctx: Context, add: list[str] = [], message: str = "your message for the commit", ) -> None: 
-    for i in add: 
+def git(
+    ctx: Context,
+    add: list[str] = [],
+    message: str = "your message for the commit",
+) -> None:
+    for i in add:
         ctx.run(f"git add {i}", echo=True, pty=not WINDOWS)
     ctx.run(f"git commit -m '{message}'", echo=True, pty=not WINDOWS)
     ctx.run("git push", echo=True, pty=not WINDOWS)
-

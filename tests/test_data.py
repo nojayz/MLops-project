@@ -11,6 +11,10 @@ def test_data():
             assert x.shape == (1, 28, 28), f"Expected image shape (1, 28, 28), but got {x.shape}"
             assert y in range(10), f"Expected target in range [0, 9], but got {y}"
     train_targets = torch.unique(train.tensors[1])
-    assert (train_targets == torch.arange(0,10)).all(), f"Expected training targets to be in range [0, 9], but got {train_targets}"
+    assert (
+        train_targets == torch.arange(0, 10)
+    ).all(), f"Expected training targets to be in range [0, 9], but got {train_targets}"
     test_targets = torch.unique(test.tensors[1])
-    assert (test_targets == torch.arange(0,10)).all(), f"Expected test targets to be in range [0, 9], but got {test_targets}"
+    assert (
+        test_targets == torch.arange(0, 10)
+    ).all(), f"Expected test targets to be in range [0, 9], but got {test_targets}"
