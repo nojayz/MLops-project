@@ -1,0 +1,3 @@
+dropout: 0.25
+kernel_size: 3
+padding: 1

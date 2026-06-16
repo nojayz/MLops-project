@@ -1,19 +1,38 @@
+from pathlib import Path
+
 import matplotlib.pyplot as plt
 import torch
-import typer
+import hydra
+import logging
+import wandb
+from hydra.core.hydra_config import HydraConfig
+from omegaconf import DictConfig
 from data import corrupt_mnist  # noqa: I001
 from model import ConvNet  # noqa: I001
 
+
+ROOT = Path(__file__).parent
+
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
-
-def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
+@hydra.main(config_path="config", config_name="config")
+def train(config: DictConfig) -> None:
     """Train a model on MNIST."""
-    print("Training day and night")
-    print(f"{lr=}, {batch_size=}, {epochs=}")
+    (ROOT / "models").mkdir(exist_ok=True)
+    (ROOT / "reports" / "figures").mkdir(parents=True, exist_ok=True)
+    hparams = config.train
+    batch_size = hparams["batch_size"]
+    lr = hparams["learning_rate"]
+    epochs = hparams["epochs"]
+    wandb.init(project="dtu-mlops", config={"batch_size": batch_size, "learning_rate": lr, "epochs": epochs}, job_type="train")
+    artifact = wandb.Artifact(name="mnist_dumb_model", type="model")
 
-    model = ConvNet().to(DEVICE)
-    train_set, _ = corrupt_mnist()
+    model = ConvNet(
+        dropout=config.model["dropout"],
+        kernel_size=config.model["kernel_size"],
+        padding=config.model["padding"],
+    ).to(DEVICE)
+    train_set, _ = corrupt_mnist(config.data["path"])
 
     train_dataloader = torch.utils.data.DataLoader(train_set, batch_size=batch_size)
 
@@ -37,16 +56,20 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
 
             if i % 100 == 0:
                 print(f"Epoch {epoch}, iter {i}, loss: {loss.item()}")
+            wandb.log({"train_loss": loss.item(), "train_accuracy": accuracy})
 
     print("Training complete")
-    torch.save(model.state_dict(), "models/model.pth")
+    torch.save(model.state_dict(), ROOT / "models" / "model.pth")
     fig, axs = plt.subplots(1, 2, figsize=(15, 5))
     axs[0].plot(statistics["train_loss"])
     axs[0].set_title("Train loss")
     axs[1].plot(statistics["train_accuracy"])
     axs[1].set_title("Train accuracy")
-    fig.savefig("reports/figures/training_statistics.png")
+    fig.savefig(ROOT / "reports" / "figures" / "training_statistics.png")
+    artifact.add_file(str(ROOT / "models" / "model.pth"))
+    wandb.log_artifact(artifact)
+    wandb.log({"training_statistics": wandb.Image(str(ROOT / "reports" / "figures" / "training_statistics.png"))})
 
 
 if __name__ == "__main__":
-    typer.run(train)
+    train()

@@ -1,0 +1,10 @@
+train:
+  batch_size: 100
+  learning_rate: 0.0001
+  epochs: 12
+model:
+  dropout: 0.25
+  kernel_size: 3
+  padding: 1
+data:
+  path: data/corruptmnist_v1/processed
