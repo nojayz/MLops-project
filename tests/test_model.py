@@ -2,7 +2,6 @@ import torch
 from dtu_mlops.model import ConvNet
 
 
-
 def test_my_model():
     """Test the MyModel class."""
     # Add your test cases here

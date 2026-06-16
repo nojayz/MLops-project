@@ -1,6 +1,7 @@
 import torch
 from dtu_mlops.data import corrupt_mnist
 
+
 def test_data():
     train, test = corrupt_mnist()
     assert len(train) == 30000, f"Expected 30000 training samples, but got {len(train)}"
