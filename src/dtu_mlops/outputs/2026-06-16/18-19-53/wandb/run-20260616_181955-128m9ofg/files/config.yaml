@@ -1,0 +1,56 @@
+_wandb:
+    value:
+        cli_version: 0.27.2
+        e:
+            v6n0mr7gi4ytty77nq2tp4met8hsca66:
+                apple:
+                    ecpuCores: 4
+                    gpuCores: 7
+                    macModel: MacBookAir10,1
+                    memoryGb: 8
+                    name: Apple M1
+                    pcpuCores: 4
+                    ramTotalBytes: "8589934592"
+                    swapTotalBytes: "6442450944"
+                codePath: src/dtu_mlops/train.py
+                cpu_count: 8
+                cpu_count_logical: 8
+                disk:
+                    /:
+                        total: "245107195904"
+                        used: "235675353088"
+                email: jason933julienne@gmail.com
+                executable: /Users/j.julienne/Documents/MLops/project_ML/MLops-project/.venv/bin/python3
+                git:
+                    commit: 80cd071cb0d22bc111aba7a09fb621bab7eb9d92
+                    remote: https://github.com/nojayz/MLops-project.git
+                host: MacBook-Air-de-jason.local
+                memory:
+                    total: "8589934592"
+                os: macOS-15.3.2-arm64-arm-64bit
+                program: /Users/j.julienne/Documents/MLops/project_ML/MLops-project/src/dtu_mlops/train.py
+                python: CPython 3.12.12
+                root: /Users/j.julienne/Documents/MLops/project_ML/MLops-project/src/dtu_mlops/outputs/2026-06-16/18-19-53
+                startedAt: "2026-06-16T16:19:55.564176Z"
+                writerId: v6n0mr7gi4ytty77nq2tp4met8hsca66
+        m: []
+        python_version: 3.12.12
+        t:
+            "1":
+                - 1
+                - 50
+            "2":
+                - 1
+                - 50
+            "3":
+                - 16
+            "4": 3.12.12
+            "5": 0.27.2
+            "12": 0.27.2
+            "13": darwin-arm64
+batch_size:
+    value: 100
+epochs:
+    value: 4
+learning_rate:
+    value: 0.0001

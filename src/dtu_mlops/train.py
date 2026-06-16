@@ -1,15 +1,15 @@
+import logging
 from pathlib import Path
 
+import hydra
 import matplotlib.pyplot as plt
 import torch
-import hydra
-import logging
 import wandb
 from hydra.core.hydra_config import HydraConfig
-from omegaconf import DictConfig
-from data import corrupt_mnist  # noqa: I001
 from model import ConvNet  # noqa: I001
+from omegaconf import DictConfig
 
+from data import corrupt_mnist  # noqa: I001
 
 ROOT = Path(__file__).parent
 

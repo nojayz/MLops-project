@@ -1,0 +1,37 @@
+{
+  "os": "macOS-15.3.2-arm64-arm-64bit",
+  "python": "CPython 3.12.12",
+  "startedAt": "2026-06-16T16:19:55.564176Z",
+  "program": "/Users/j.julienne/Documents/MLops/project_ML/MLops-project/src/dtu_mlops/train.py",
+  "codePath": "src/dtu_mlops/train.py",
+  "git": {
+    "remote": "https://github.com/nojayz/MLops-project.git",
+    "commit": "80cd071cb0d22bc111aba7a09fb621bab7eb9d92"
+  },
+  "email": "jason933julienne@gmail.com",
+  "root": "/Users/j.julienne/Documents/MLops/project_ML/MLops-project/src/dtu_mlops/outputs/2026-06-16/18-19-53",
+  "host": "MacBook-Air-de-jason.local",
+  "executable": "/Users/j.julienne/Documents/MLops/project_ML/MLops-project/.venv/bin/python3",
+  "cpu_count": 8,
+  "cpu_count_logical": 8,
+  "disk": {
+    "/": {
+      "total": "245107195904",
+      "used": "235675353088"
+    }
+  },
+  "memory": {
+    "total": "8589934592"
+  },
+  "apple": {
+    "name": "Apple M1",
+    "ecpuCores": 4,
+    "pcpuCores": 4,
+    "gpuCores": 7,
+    "memoryGb": 8,
+    "swapTotalBytes": "6442450944",
+    "ramTotalBytes": "8589934592",
+    "macModel": "MacBookAir10,1"
+  },
+  "writerId": "v6n0mr7gi4ytty77nq2tp4met8hsca66"
+}

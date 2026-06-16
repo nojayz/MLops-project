@@ -1,5 +1,6 @@
-from loguru import logger
 import sys
+
+from loguru import logger
 
 logger.remove()  # remove default handler
 logger.add("logs/vae_mnist.log", rotation="100 MB", level="WARNING") 

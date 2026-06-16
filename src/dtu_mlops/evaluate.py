@@ -1,7 +1,8 @@
 import torch
 import typer
-from data import corrupt_mnist  # noqa: I001
 from model import ConvNet  # noqa: I001
+
+from data import corrupt_mnist  # noqa: I001
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
