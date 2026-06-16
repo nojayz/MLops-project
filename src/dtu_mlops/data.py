@@ -41,7 +41,8 @@ def normalize(images: torch.Tensor) -> torch.Tensor:
 
 def preprocess_data(raw_dir: str, processed_dir: str) -> None:
     """Process raw data and save it to processed directory."""
-    train_images, train_target = [], []
+    train_images: list[torch.Tensor] = []
+    train_target: list[torch.Tensor] = []
     for i in range(6):
         train_images.append(torch.load(f"{raw_dir}/train_images_{i}.pt"))
         train_target.append(torch.load(f"{raw_dir}/train_target_{i}.pt"))

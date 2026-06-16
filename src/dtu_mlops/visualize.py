@@ -20,7 +20,8 @@ def visualize(model_checkpoint: str, figure_name: str = "embeddings.png") -> Non
     test_target = torch.load("data/processed/test_target.pt")
     test_dataset = torch.utils.data.TensorDataset(test_images, test_target)
 
-    embeddings, targets = [], []
+    embeddings: list[torch.Tensor] = []
+    targets: list[torch.Tensor] = []
     with torch.inference_mode():
         for batch in torch.utils.data.DataLoader(test_dataset, batch_size=32):
             images, target = batch
