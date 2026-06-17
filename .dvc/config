@@ -1,0 +1,5 @@
+[core]
+    remote = storage
+['remote "storage"']
+    url = ssh://login.hpc.dtu.dk/work3/s243576/data
+    user = s243576
