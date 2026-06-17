@@ -9,16 +9,14 @@ def dataset_statistics(datadir: str = "data") -> None:
     """Compute dataset statistics."""
     train_dataset = MyDataset(data_dir=datadir, train=True)
     test_dataset = MyDataset(data_dir=datadir, train=False)
-    print(f"Train dataset: {train_dataset.name}")
-    print(f"Number of images: {len(train_dataset)}")
+    print(f"Train dataset size: {len(train_dataset)}")
     print(f"Image shape: {train_dataset[0][0].shape}")
     print("\n")
-    print(f"Test dataset: {test_dataset.name}")
-    print(f"Number of images: {len(test_dataset)}")
+    print(f"Test dataset size: {len(test_dataset)}")
     print(f"Image shape: {test_dataset[0][0].shape}")
 
-    train_label_distribution = torch.bincount(train_dataset.target)
-    test_label_distribution = torch.bincount(test_dataset.target)
+    train_label_distribution = torch.bincount(train_dataset.targets)
+    test_label_distribution = torch.bincount(test_dataset.targets)
 
     plt.bar(torch.arange(10), train_label_distribution)
     plt.title("Train label distribution")
