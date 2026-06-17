@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 import torch
 import wandb
 from hydra.core.hydra_config import HydraConfig
-from model import ConvNet  # noqa: I001
+from model import ConvNet
 from omegaconf import DictConfig
 
-from data import corrupt_mnist  # noqa: I001
+from data import corrupt_mnist
 
 ROOT = Path(__file__).parent
 

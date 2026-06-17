@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import torch
 import typer
 
-from data import MyDataset  # noqa: I001
+from data import MyDataset
 
 
 def dataset_statistics(datadir: str = "data") -> None:
