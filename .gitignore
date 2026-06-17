@@ -1,5 +1,12 @@
 docs/site/
 
+# Hydra outputs
+outputs/
+src/dtu_mlops/outputs/
+
+# Wandb
+wandb/
+
 
 # test cache
 manual_test/
