@@ -1,3 +1,4 @@
+# ruff: noqa: I001
 import logging
 from pathlib import Path
 
@@ -6,10 +7,10 @@ import matplotlib.pyplot as plt
 import torch
 import wandb
 from hydra.core.hydra_config import HydraConfig
-from model import ConvNet
 from omegaconf import DictConfig
 
 from data import corrupt_mnist
+from model import ConvNet
 
 ROOT = Path(__file__).parent
 
