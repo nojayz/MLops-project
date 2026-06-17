@@ -1,0 +1,39 @@
+import matplotlib.pyplot as plt
+import torch
+import typer
+
+from data import MyDataset  # noqa: I001
+
+
+def dataset_statistics(datadir: str = "data") -> None:
+    """Compute dataset statistics."""
+    train_dataset = MyDataset(data_dir=datadir, train=True)
+    test_dataset = MyDataset(data_dir=datadir, train=False)
+    print(f"Train dataset: {train_dataset.name}")
+    print(f"Number of images: {len(train_dataset)}")
+    print(f"Image shape: {train_dataset[0][0].shape}")
+    print("\n")
+    print(f"Test dataset: {test_dataset.name}")
+    print(f"Number of images: {len(test_dataset)}")
+    print(f"Image shape: {test_dataset[0][0].shape}")
+
+    train_label_distribution = torch.bincount(train_dataset.target)
+    test_label_distribution = torch.bincount(test_dataset.target)
+
+    plt.bar(torch.arange(10), train_label_distribution)
+    plt.title("Train label distribution")
+    plt.xlabel("Label")
+    plt.ylabel("Count")
+    plt.savefig("train_label_distribution.png")
+    plt.close()
+
+    plt.bar(torch.arange(10), test_label_distribution)
+    plt.title("Test label distribution")
+    plt.xlabel("Label")
+    plt.ylabel("Count")
+    plt.savefig("test_label_distribution.png")
+    plt.close()
+
+
+if __name__ == "__main__":
+    typer.run(dataset_statistics)

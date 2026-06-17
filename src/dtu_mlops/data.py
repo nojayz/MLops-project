@@ -27,7 +27,7 @@ class MyDataset(Dataset):
 
     def __len__(self) -> int:
         """Return the length of the dataset."""
-        return len(self.images.shape[0])
+        return self.images.shape[0]
 
     def __getitem__(self, idx: int):
         """Return a given sample from the dataset."""
