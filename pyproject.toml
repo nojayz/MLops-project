@@ -71,3 +71,4 @@ mypy_path = "src/dtu_mlops"
 
 [tool.coverage.run]
 omit = ["tests/*"]
+ 
